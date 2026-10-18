@@ -1,0 +1,24 @@
+id = "verilator-013"
+title = "A comment that begins with the tool's name is read as a directive"
+category = "preprocess"
+kind = "runtime"
+tools_affected = ["verilator"]
+first_seen = { verilator = "5.046" }
+ieee = "1800-2017 5.4"
+description = """
+A plain comment such as `// Verilator users: ...` is read as a Verilator directive and
+rejected as unknown (`%Error-BADVLTPRAGMA`). The standard ignores the text of comments. This is
+how Verilator's own directives work, so it is documented behaviour, but it surprises people
+who write prose about the tool in their sources.
+"""
+workaround = "Start such a comment with another word."
+style_guide = []
+upstream = ""
+skip = []
+
+[expected]
+verilator = "rejects"
+questa = "ok"
+vcs = "ok"
+slang = "ok"
+verible = "ok"

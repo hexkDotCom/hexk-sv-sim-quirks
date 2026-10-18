@@ -1,0 +1,28 @@
+id = "verilator-001"
+title = "A class event triggered while nobody waits satisfies a later @(e)"
+category = "events"
+kind = "runtime"
+tools_affected = ["verilator"]
+first_seen = { verilator = "5.046" }
+ieee = "1800-2017 9.4.2, 15.5"
+description = """
+An event that is a member of a class is triggered while no process waits on it. 10 ns later a
+task of the class waits with `@(e)`. The wait must block until the next trigger: an event is
+triggered only in the time step of the `->`. Verilator 5.046 keeps the event triggered and the
+later `@(e)` returns at once.
+"""
+workaround = """
+Count notifications instead of triggering an event: the notifier increments a counter, the
+waiter remembers the value and blocks on `wait (count != seen)`. This form also cannot miss a
+notification made between the start of two fork branches.
+"""
+style_guide = []
+upstream = ""
+skip = []
+
+[expected]
+verilator = "differs"
+questa = "ok"
+vcs = "ok"
+slang = "ok"
+verible = "ok"

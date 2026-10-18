@@ -1,0 +1,22 @@
+id = "verilator-007"
+title = "No enum methods for an enum wider than 64 bits"
+category = "types"
+kind = "runtime"
+tools_affected = ["verilator"]
+first_seen = { verilator = "5.046" }
+ieee = "1800-2017 6.19.5"
+description = """
+`name()`, `next()` and `prev()` on a variable of an enum whose base type is wider than 64
+bits. Verilator 5.046 rejects them (`%Error-UNSUPPORTED`).
+"""
+workaround = "Keep enums at 64 bits or less, or turn values into names with a `case` statement."
+style_guide = []
+upstream = ""
+skip = []
+
+[expected]
+verilator = "rejects"
+questa = "ok"
+vcs = "ok"
+slang = "ok"
+verible = "ok"

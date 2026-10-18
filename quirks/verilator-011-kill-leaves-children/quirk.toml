@@ -1,0 +1,22 @@
+id = "verilator-011"
+title = "process::kill() does not end the processes the killed process forked"
+category = "processes"
+kind = "runtime"
+tools_affected = ["verilator"]
+first_seen = { verilator = "5.046" }
+ieee = "1800-2017 9.7"
+description = """
+A process forks a child with `join_none` and is then killed. `kill()` ends the process and
+all its subprocesses, so the child must not run on. In Verilator 5.046 the child keeps running.
+"""
+workaround = "Keep the handles of the child processes and kill them explicitly."
+style_guide = []
+upstream = ""
+skip = []
+
+[expected]
+verilator = "differs"
+questa = "ok"
+vcs = "ok"
+slang = "ok"
+verible = "ok"

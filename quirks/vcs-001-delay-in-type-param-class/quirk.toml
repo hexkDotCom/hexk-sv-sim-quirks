@@ -1,0 +1,29 @@
+id = "vcs-001"
+title = "A delay in a type-parameterized class is scaled by the time unit of the type argument's scope"
+category = "timing"
+kind = "runtime"
+tools_affected = ["vcs"]
+first_seen = { vcs = "X-2025.06" }
+ieee = "1800-2017 3.14.2"
+description = """
+A class with a type parameter, in a package with time unit 1 ps, waits `#(delay_ps)`. It is
+specialized with a class declared in a module with time unit 1 ns. A delay of 30000 must take
+30 ns (the unit of the scope where the delay is written). VCS X-2025.06 scales it by the unit
+of the scope that declares the type argument and waits 1000 times longer. `$time` in the same
+class reads correctly; writing `#(delay_ps * 1ps)` or moving the delay into a local task does
+not help.
+"""
+workaround = """
+Delay through a static task of a class without a type parameter, declared in the package with
+the intended time unit.
+"""
+style_guide = []
+upstream = ""
+skip = []
+
+[expected]
+verilator = "ok"
+questa = "ok"
+vcs = "differs"
+slang = "ok"
+verible = "ok"

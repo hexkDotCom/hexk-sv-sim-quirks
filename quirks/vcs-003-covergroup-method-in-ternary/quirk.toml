@@ -1,0 +1,22 @@
+id = "vcs-003"
+title = "A covergroup method call inside ?: stops the compiler"
+category = "coverage"
+kind = "runtime"
+tools_affected = ["vcs"]
+first_seen = { vcs = "X-2025.06" }
+ieee = "1800-2017 19.8, 11.4.11"
+description = """
+`return enabled ? cg.get_inst_coverage() : 0.0;` in a class method. VCS X-2025.06 stops with
+an internal assertion failure.
+"""
+workaround = "Use an `if` statement instead of `?:`."
+style_guide = []
+upstream = ""
+skip = []
+
+[expected]
+verilator = "ok"
+questa = "ok"
+vcs = "crash"
+slang = "ok"
+verible = "ok"

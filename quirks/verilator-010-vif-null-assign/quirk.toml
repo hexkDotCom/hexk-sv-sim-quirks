@@ -1,0 +1,22 @@
+id = "verilator-010"
+title = "A virtual interface cannot be assigned null"
+category = "interfaces"
+kind = "runtime"
+tools_affected = ["verilator"]
+first_seen = { verilator = "5.046" }
+ieee = "1800-2017 25.9"
+description = """
+`vif = null;` for a virtual interface variable. Verilator 5.046 rejects the assignment;
+comparing a virtual interface with `null` works.
+"""
+workaround = "Keep a separate flag that says whether the handle is valid."
+style_guide = []
+upstream = ""
+skip = []
+
+[expected]
+verilator = "rejects"
+questa = "ok"
+vcs = "ok"
+slang = "ok"
+verible = "ok"

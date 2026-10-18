@@ -1,0 +1,88 @@
+{
+  "tool": "verilator",
+  "version": "5.046",
+  "date": "2026-10-17T15:13:31",
+  "os": "Linux 6.18.54.1-microsoft-standard-WSL2",
+  "results": {
+    "diff-001": {
+      "outcome": "accepts",
+      "workaround": "ok"
+    },
+    "questa-001": {
+      "outcome": "ok",
+      "workaround": "ok"
+    },
+    "questa-002": {
+      "outcome": "n/a",
+      "workaround": "-"
+    },
+    "vcs-001": {
+      "outcome": "ok",
+      "workaround": "ok"
+    },
+    "vcs-002": {
+      "outcome": "ok",
+      "workaround": "ok"
+    },
+    "vcs-003": {
+      "outcome": "ok",
+      "workaround": "ok"
+    },
+    "vcs-004": {
+      "outcome": "ok",
+      "workaround": "ok"
+    },
+    "verilator-001": {
+      "outcome": "differs",
+      "workaround": "ok"
+    },
+    "verilator-002": {
+      "outcome": "crash",
+      "workaround": "ok"
+    },
+    "verilator-003": {
+      "outcome": "differs",
+      "workaround": "ok"
+    },
+    "verilator-004": {
+      "outcome": "differs",
+      "workaround": "ok"
+    },
+    "verilator-005": {
+      "outcome": "differs",
+      "workaround": "ok"
+    },
+    "verilator-006": {
+      "outcome": "differs",
+      "workaround": "ok"
+    },
+    "verilator-007": {
+      "outcome": "rejects",
+      "workaround": "ok"
+    },
+    "verilator-008": {
+      "outcome": "crash",
+      "workaround": "ok"
+    },
+    "verilator-009": {
+      "outcome": "crash",
+      "workaround": "ok"
+    },
+    "verilator-010": {
+      "outcome": "rejects",
+      "workaround": "ok"
+    },
+    "verilator-011": {
+      "outcome": "differs",
+      "workaround": "ok"
+    },
+    "verilator-012": {
+      "outcome": "rejects",
+      "workaround": "ok"
+    },
+    "verilator-013": {
+      "outcome": "rejects",
+      "workaround": "ok"
+    }
+  }
+}

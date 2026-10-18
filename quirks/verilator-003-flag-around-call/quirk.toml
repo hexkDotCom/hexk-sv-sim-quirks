@@ -1,0 +1,26 @@
+id = "verilator-003"
+title = "A member set before a call and cleared after it reads 0 inside the call"
+category = "classes"
+kind = "runtime"
+tools_affected = ["verilator"]
+first_seen = { verilator = "5.046" }
+ieee = ""
+description = """
+A method sets a member bit to 1, calls a package function that reaches a virtual method of
+the same object, and sets the bit back to 0. Inside the call the bit must read 1. Verilator
+5.046 drops the first write, so the code reached through the call reads 0.
+"""
+workaround = """
+Do not guard a call with a set/clear member flag. A counter incremented before the call and
+decremented after it is read correctly.
+"""
+style_guide = []
+upstream = ""
+skip = []
+
+[expected]
+verilator = "differs"
+questa = "ok"
+vcs = "ok"
+slang = "ok"
+verible = "ok"

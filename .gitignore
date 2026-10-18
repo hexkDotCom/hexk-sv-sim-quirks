@@ -1,0 +1,18 @@
+# Runner output (logs of open tools); Questa and VCS runs never write here.
+out/
+__pycache__/
+*.pyc
+# Simulator output, never committed.
+*.log
+*.wlf
+*.vcd
+*.fst
+transcript
+work/
+csrc/
+simv
+simv.daidir/
+obj_dir/
+ucli.key
+vc_hdrs.h
+modelsim.ini

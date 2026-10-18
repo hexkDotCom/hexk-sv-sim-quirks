@@ -1,0 +1,28 @@
+id = "verilator-002"
+title = "A forked wait on a local of an automatic module task dereferences a null pointer"
+category = "processes"
+kind = "runtime"
+tools_affected = ["verilator"]
+first_seen = { verilator = "5.046" }
+ieee = "1800-2017 6.21, 9.3.2"
+description = """
+An automatic task in a module forks a branch that waits with `wait (count != seen)`, where
+`seen` is a local of the task, and a second branch that times out; `join_any` and
+`disable fork` follow. The simulation stops with "Null pointer dereferenced" at the line of
+the `wait`, with or without the `disable fork`. Automatic variables must stay alive as long as
+a forked process refers to them. The same code in a method of a class runs correctly.
+"""
+workaround = """
+Put the wait in a method of a class (class methods are automatic too and are not affected),
+or use variables with static lifetime.
+"""
+style_guide = []
+upstream = ""
+skip = []
+
+[expected]
+verilator = "crash"
+questa = "ok"
+vcs = "ok"
+slang = "ok"
+verible = "ok"

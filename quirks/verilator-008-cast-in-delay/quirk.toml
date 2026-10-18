@@ -1,0 +1,21 @@
+id = "verilator-008"
+title = "A cast inside a delay expression is an internal error"
+category = "timing"
+kind = "runtime"
+tools_affected = ["verilator"]
+first_seen = { verilator = "5.046" }
+ieee = "1800-2017 9.4.1"
+description = """
+`#(longint'(steps) * 1ns);` stops Verilator 5.046 with an internal error ("Unexpected Call").
+"""
+workaround = "Compute the delay into a variable first and write `#(amount * 1ns)`."
+style_guide = []
+upstream = ""
+skip = []
+
+[expected]
+verilator = "crash"
+questa = "ok"
+vcs = "ok"
+slang = "ok"
+verible = "ok"

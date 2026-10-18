@@ -1,0 +1,22 @@
+id = "verilator-009"
+title = "type() of an unsized literal is an internal error"
+category = "types"
+kind = "runtime"
+tools_affected = ["verilator"]
+first_seen = { verilator = "5.046" }
+ieee = "1800-2017 6.23"
+description = """
+`var type(5) a;` declares a 32-bit signed variable (an unsized decimal literal is a 32-bit
+signed integer). Verilator 5.046 stops with an internal error in its width pass.
+"""
+workaround = "Give the literal a size (`32'sd5`) or name the type directly."
+style_guide = []
+upstream = ""
+skip = []
+
+[expected]
+verilator = "crash"
+questa = "ok"
+vcs = "ok"
+slang = "ok"
+verible = "ok"

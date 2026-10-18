@@ -1,0 +1,22 @@
+id = "vcs-002"
+title = "A string method called on a string parameter of a class is not implemented"
+category = "strings"
+kind = "runtime"
+tools_affected = ["vcs"]
+first_seen = { vcs = "X-2025.06" }
+ieee = "1800-2017 6.16"
+description = """
+`NAME.len()` where `NAME` is a string parameter of a class. VCS X-2025.06 rejects it
+(`Error-[NYI]`, not yet implemented).
+"""
+workaround = "Copy the parameter to a string variable and call the method on the variable."
+style_guide = []
+upstream = ""
+skip = []
+
+[expected]
+verilator = "ok"
+questa = "ok"
+vcs = "rejects"
+slang = "ok"
+verible = "ok"

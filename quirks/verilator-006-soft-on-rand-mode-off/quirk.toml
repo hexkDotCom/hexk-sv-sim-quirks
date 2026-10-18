@@ -1,0 +1,23 @@
+id = "verilator-006"
+title = "A soft constraint on a member with rand_mode(0) is enforced as a hard one"
+category = "randomization"
+kind = "runtime"
+tools_affected = ["verilator"]
+first_seen = { verilator = "5.046" }
+ieee = "1800-2017 18.5.14, 18.8"
+description = """
+A member has `soft size == 5;`, its randomization is switched off with `rand_mode(0)`, and it
+is assigned 3. `randomize()` must succeed and leave it at 3: a soft constraint that cannot be
+met is dropped. Verilator 5.046 enforces it, and the randomization fails.
+"""
+workaround = "Switch the block with the soft constraint off with `constraint_mode(0)` as well."
+style_guide = []
+upstream = ""
+skip = []
+
+[expected]
+verilator = "differs"
+questa = "ok"
+vcs = "ok"
+slang = "ok"
+verible = "ok"

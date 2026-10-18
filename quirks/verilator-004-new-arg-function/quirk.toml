@@ -1,0 +1,23 @@
+id = "verilator-004"
+title = "An argument of new() that calls a module function arrives as 0"
+category = "classes"
+kind = "runtime"
+tools_affected = ["verilator"]
+first_seen = { verilator = "5.046" }
+ieee = "1800-2017 8.7"
+description = """
+`h = new(twice(21));` where `twice` is a function declared in the module: the constructor
+receives 0 instead of 42. The same call as an argument of an ordinary method passes the right
+value.
+"""
+workaround = "Assign the call to a variable first and pass the variable to `new()`."
+style_guide = []
+upstream = ""
+skip = []
+
+[expected]
+verilator = "differs"
+questa = "ok"
+vcs = "ok"
+slang = "ok"
+verible = "ok"

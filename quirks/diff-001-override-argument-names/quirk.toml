@@ -1,0 +1,24 @@
+id = "diff-001"
+title = "An override of a virtual method with other argument names is accepted"
+category = "classes"
+kind = "runtime"
+trigger_legal = false
+tools_affected = ["verilator", "vcs"]
+first_seen = { verilator = "5.046", vcs = "X-2025.06" }
+ieee = "1800-2017 8.20"
+description = """
+An override of a virtual method must keep the argument names of the prototype. Code that
+renames an argument compiles on some tools and fails on others, so it breaks when a project
+moves between them. Questa 2024.1 (`vlog-2911`) and slang reject it; Verilator 5.046 and
+VCS X-2025.06 accept it.
+"""
+workaround = "Keep the argument names of the base method in every override."
+style_guide = []
+upstream = ""
+skip = ["verible"]   # a parser only; the rule is semantic
+
+[expected]
+verilator = "accepts"
+questa = "ok"
+vcs = "accepts"
+slang = "ok"
